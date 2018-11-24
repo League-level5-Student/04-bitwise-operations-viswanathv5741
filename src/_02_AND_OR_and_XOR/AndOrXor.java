@@ -1,5 +1,8 @@
 package _02_AND_OR_and_XOR;
 
+import _00_Binary_Conversion.BinaryToDecimal;
+import _00_Binary_Conversion.Decimal_To_Binary;
+
 public class AndOrXor {
 	public static void main(String[] args) {
 		// The single & is used to create a new binary value from 2 other binary values.
@@ -9,6 +12,7 @@ public class AndOrXor {
 		// What is the value of 5 & 9?
 		int num = 5 & 9;
 		System.out.println(num); // This prints 1
+		System.out.println(and(5,9));
 		
 		// 5     = 0 1 0 1
 		// 9     = 1 0 0 1
@@ -25,6 +29,7 @@ public class AndOrXor {
 		// What is the value of 5 | 9?
 		num = 5 | 9;
 		System.out.println(num); // This prints 13
+		System.out.println(or(5,9));
 		
 		// 5     = 0 1 0 1
 		// 9     = 1 0 0 1
@@ -41,6 +46,7 @@ public class AndOrXor {
 		// What is the value of 3 ^ 7?
 		num = 3 ^ 7;
 		System.out.println(num); // This prints 4
+		System.out.println(xor(3,7));
 		
 		// 3     = 0 1 1
 		// 7     = 1 1 1
@@ -51,5 +57,87 @@ public class AndOrXor {
 		// 9      = 1 0 0 1
 		// 11     = 1 0 1 1
 		// 9 ^ 11 = 0 0 1 0 = 2
+	}
+	
+	public static int and(int x, int y) {
+		Decimal_To_Binary converter = new Decimal_To_Binary();
+		String binx = converter.decToBin(x);
+		String biny = converter.decToBin(y);
+		String and = "";
+		if (binx.length() > biny.length()) {
+			while (biny.length() < binx.length()) {
+				biny = "0" + biny;
+			}
+		} else if (biny.length() > binx.length()) {
+			while (binx.length() < biny.length()) {
+				binx = "0" + binx;
+			}
+		}
+		for (int i=0; i<binx.length(); i++) {
+			if (binx.charAt(i) == '1' && biny.charAt(i) == '1') {
+				and += "1";
+			}
+			else {
+				and += "0";
+			}
+		}
+		BinaryToDecimal converter2 = new BinaryToDecimal();
+		int answer = converter2.binToDec(and);
+		return answer;
+	}
+	
+	public static int or(int x, int y) {
+		Decimal_To_Binary converter = new Decimal_To_Binary();
+		String binx = converter.decToBin(x);
+		String biny = converter.decToBin(y);
+		String or = "";
+		if (binx.length() > biny.length()) {
+			while (biny.length() < binx.length()) {
+				biny = "0" + biny;
+			}
+		} else if (biny.length() > binx.length()) {
+			while (binx.length() < biny.length()) {
+				binx = "0" + binx;
+			}
+		}
+		for (int i=0; i<binx.length(); i++) {
+			if (binx.charAt(i) == '1' || biny.charAt(i) == '1') {
+				or += "1";
+			}
+			else {
+				or += "0";
+			}
+		}
+		BinaryToDecimal converter2 = new BinaryToDecimal();
+		int answer = converter2.binToDec(or);
+		return answer;
+	}
+	
+	public static int xor(int x, int y) {
+		Decimal_To_Binary converter = new Decimal_To_Binary();
+		String binx = converter.decToBin(x);
+		String biny = converter.decToBin(y);
+		String xor = "";
+		if (binx.length() > biny.length()) {
+			while (biny.length() < binx.length()) {
+				biny = "0" + biny;
+			}
+		} else if (biny.length() > binx.length()) {
+			while (binx.length() < biny.length()) {
+				binx = "0" + binx;
+			}
+		}
+		for (int i=0; i<binx.length(); i++) {
+			if (binx.charAt(i) != biny.charAt(i)) {
+				xor += "1";
+			}
+			else {
+				xor += "0";
+			}
+		}
+		BinaryToDecimal converter2 = new BinaryToDecimal();
+		int answer = converter2.binToDec(xor);
+		return answer;
+		
 	}
 }

@@ -31,5 +31,31 @@ public class Decimal_To_Binary {
 		 *         
 		 *         43 in decimal is 101011 in binary!
 		 */
+		
+		System.out.println(decToBin(43));
+		
 	}
+	
+	public static String decToBin(int x) {
+		String bin = "";
+		double testVal = 0;
+		int power = 1;
+		while (x-testVal >= 0) {
+			power += 1;
+			testVal = Math.pow(2, power);
+		}
+		power -= 1;
+		testVal = Math.pow(2, power);
+		for (int i=power; i>=0; i--) {
+			if (x-Math.pow(2, i) >= 0) {
+				x -= Math.pow(2, i);
+				bin += "1";
+			}
+			else {
+				bin += "0";
+			}
+		}
+		return bin;
+	}
+
 }
