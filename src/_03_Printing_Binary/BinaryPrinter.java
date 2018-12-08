@@ -8,6 +8,12 @@ public class BinaryPrinter {
 	public static void main(String[] args) {
 		byte num = 5;
 		printByteBinary(num);
+		short x = (short) 13100;
+		printShortBinary(x);
+		int y = 140000;
+		printLongBinary(y);
+		long z = (long) 1343583857;
+		printLongBinary(z);
 	}
 	
 	public static void printByteBinary(byte b) {
@@ -35,7 +41,7 @@ public class BinaryPrinter {
 		System.out.println(bin);
 	}
 	
-	public void printShortBinary(short s) {
+	public static void printShortBinary(short s) {
 		String bin = "";
 		double testVal = 0;
 		int power = 1;
@@ -60,7 +66,7 @@ public class BinaryPrinter {
 		System.out.println(bin);
 	}
 	
-	public void printIntBinary(int i) {
+	public static void printIntBinary(int i) {
 		String bin = "";
 		double testVal = 0;
 		int power = 1;
@@ -85,7 +91,7 @@ public class BinaryPrinter {
 		System.out.println(bin);
 	}
 	
-	public void printLongBinary(long l) {
+	public static void printLongBinary(long l) {
 		String bin = "";
 		double testVal = 0;
 		int power = 1;
