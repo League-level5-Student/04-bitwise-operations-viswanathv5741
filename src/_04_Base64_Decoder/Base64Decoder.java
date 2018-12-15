@@ -37,14 +37,14 @@ public class Base64Decoder {
 	
 	//1. Complete this method so that it returns the the element in
 	//   the base64Chars array that corresponds to the passed in char.
-	public static Integer convertBase64Char(char c){
+	public static int convertBase64Char(char c){
 		for (int i=0; i<base64Chars.length; i++) {
 			if (base64Chars[i] == c) {
 				//byte [] bytes = ByteBuffer.allocate(4).putInt(i).array();
 				return i;
 			}
 		}
-		return null;
+		return 0;
 	}
 	
 	//2. Complete this method so that it will take in a string that is 4 
@@ -52,17 +52,63 @@ public class Base64Decoder {
 	//   array should be the binary value of the encoded characters.
 	public static byte[] convert4CharsTo24Bits(String s){
 		int[] results = new int[4];
-		byte[] bytes = new byte[4];
+		byte[] bytes = new byte[3];
+		String val = "";
+		String bitVals = "";
 		for (int i=0; i<s.length(); i++) {
 			int loc = convertBase64Char(s.charAt(i));
-			results[i] = loc;
+			results[i] = loc;			// array has location values in the base64Chars array- has 4 values
 		}
-		return null;
+		for (int i=0; i<results.length; i++) {
+			//System.out.println(results[i]);
+			val = Integer.toBinaryString(results[i]);
+			//System.out.println(results[i] + ":" + val);
+			//System.out.println(val.length());
+			while (val.length() < 6) {
+				val = "0" + val;
+				//System.out.println(val);
+			}
+			bitVals += val;
+		}
+		System.out.println(bitVals);
+		for (int i=0; i<bytes.length; i++) {
+			int bit1 = Integer.parseInt(bitVals.substring(0,8), 2);
+			System.out.println("bit1 " + bit1);
+			bytes[i] = (byte)bit1;
+			bitVals = bitVals.substring(8,bitVals.length());
+		}
+		return bytes;
 	}
 	
 	//3. Complete this method so that it takes in a string of any length
 	//   and returns the full byte array of the decoded base64 characters.
 	public static byte[] base64StringToByteArray(String file) {
-		return null;
+		int[] results = new int[file.length()];
+		byte[] bytes = new byte[file.length()*3/4];
+		String val = "";
+		String bitVals = "";
+		for (int i=0; i<file.length(); i++) {
+			int loc = convertBase64Char(file.charAt(i));
+			results[i] = loc;			// array has location values in the base64Chars array- has 4 values
+		}
+		for (int i=0; i<results.length; i++) {
+			//System.out.println(results[i]);
+			val = Integer.toBinaryString(results[i]);
+			//System.out.println(results[i] + ":" + val);
+			//System.out.println(val.length());
+			while (val.length() < 6) {
+				val = "0" + val;
+				//System.out.println(val);
+			}
+			bitVals += val;
+		}
+		System.out.println(bitVals);
+		for (int i=0; i<bytes.length; i++) {
+			int bit1 = Integer.parseInt(bitVals.substring(0,8), 2);
+			System.out.println("bit1 " + bit1);
+			bytes[i] = (byte)bit1;
+			bitVals = bitVals.substring(8,bitVals.length());
+		}
+		return bytes;
 	}
 }

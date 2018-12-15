@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 import org.junit.Test;
 
@@ -14,6 +15,7 @@ public class Base64DecoderTester {
 
 	@Test
 	public void testConvertBase64Char() {
+//		Base64Decoder.convert4CharsTo24Bits("ABFZ");
 		assertEquals(0, Base64Decoder.convertBase64Char('A'));
 		assertEquals(1, Base64Decoder.convertBase64Char('B'));
 		assertEquals(4, Base64Decoder.convertBase64Char('E'));
@@ -34,6 +36,7 @@ public class Base64DecoderTester {
 		answer[1] = (byte) 255;
 		answer[2] = (byte) 255;
 		check = Base64Decoder.convert4CharsTo24Bits("////");
+		System.out.println(Arrays.toString(check));
 		// 111.111 111.111 111.111 111.111
 		// 1111.1111 1111.1111 1111.1111
 		assertArrayEquals(answer, check);
@@ -46,6 +49,8 @@ public class Base64DecoderTester {
 		// 0000.0111 0000.1101. 0111.1110
 		assertArrayEquals(answer, check);
 	}
+	
+
 
 	@Test
 	public void testBase64StringToByteArray() {
@@ -80,4 +85,5 @@ public class Base64DecoderTester {
 			e.printStackTrace();
 		}
 	}
+
 }
